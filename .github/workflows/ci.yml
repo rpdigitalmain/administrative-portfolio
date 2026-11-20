@@ -93,7 +93,7 @@ jobs:
         run: npm audit --audit-level=high --omit dev
 
       - name: Build Docker image
-        run: docker build -t photography-portfolio-helena-duarte:latest .
+        run: docker build -t administrative-portfolio:latest .
 
       - name: Upload Playwright results
         if: always() && !env.ACT

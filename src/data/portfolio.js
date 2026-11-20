@@ -8,11 +8,6 @@ export const portfolio = {
     { label: 'Also experienced in', value: '[Area 3]', style: 'soft' },
     { label: 'Currently developing', value: '[Area 4]', style: 'outline' },
   ],
-  stats: [
-    { value: '[00]', label: 'Years of experience' },
-    { value: '[00]', label: 'Companies' },
-    { value: '[00]', label: 'Certifications' },
-  ],
   summary: {
     text: '[A short professional summary: your field, the routines you manage, and the value you bring to a team.]',
     metric: '[00]',

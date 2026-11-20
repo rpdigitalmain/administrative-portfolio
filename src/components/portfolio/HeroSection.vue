@@ -37,16 +37,5 @@ defineProps({
         </div>
       </div>
     </div>
-
-    <dl class="stat-list">
-      <div
-        v-for="stat in portfolio.stats"
-        :key="stat.label"
-        class="stat-item"
-      >
-        <dt>{{ stat.label }}</dt>
-        <dd>{{ stat.value }}</dd>
-      </div>
-    </dl>
   </section>
 </template>
