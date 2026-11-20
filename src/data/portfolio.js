@@ -42,9 +42,24 @@ export const portfolio = {
     },
   ],
   socialLinks: [
-    { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/' },
-    { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
-    { label: 'WhatsApp', icon: 'whatsapp', phoneNumber: '' },
+    {
+      label: 'LinkedIn',
+      icon: 'linkedin',
+      url: 'https://www.linkedin.com/in/rpdigitalmain/',
+      displayValue: 'rpdigitalmain',
+    },
+    {
+      label: 'Instagram',
+      icon: 'instagram',
+      url: 'https://www.instagram.com/rpdigitalmain/',
+      displayValue: 'rpdigitalmain',
+    },
+    {
+      label: 'WhatsApp',
+      icon: 'whatsapp',
+      phoneNumber: '5535999182635',
+      displayValue: '+55 (35) 99918-2635',
+    },
   ],
   education: [
     {

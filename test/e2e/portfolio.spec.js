@@ -31,7 +31,7 @@ test.describe('Administrative portfolio', () => {
     await expect(page.locator('#social-links')).toBeInViewport()
     await expect(page.getByRole('heading', { name: 'Redes sociais' })).toBeVisible()
     await expect(page.getByRole('navigation', { name: 'Redes sociais' }).getByRole('link'))
-      .toHaveCount(2)
+      .toHaveCount(3)
   })
 
   test('generates and downloads a resume PDF from portfolio data', async ({ page }) => {

@@ -44,11 +44,11 @@ Static hosts must rewrite unknown paths to `/index.html` for history-mode routin
 
 ## Social links and icons
 
-Social profiles are records in `portfolio.socialLinks`, each with a label and icon key. Most use a URL; WhatsApp builds its URL from a phone number with the country code. If no WhatsApp number is configured, the card displays a disabled item. `SocialLinksCard.vue` renders these records, and `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions.
+Social profiles are records in `portfolio.socialLinks`, each with a label and icon key. Most use a URL; WhatsApp builds its URL from a phone number with the country code. `displayValue` provides a short identifier for the generated resume instead of printing full profile URLs. If no WhatsApp number is configured, the card displays a disabled item. `SocialLinksCard.vue` renders these records, and `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions.
 
 ## Resume file
 
-The header generates and downloads the resume in the browser from `src/data/portfolio.js` using `pdf-lib`. Empty sections are omitted. The generated file is not uploaded or stored by the application.
+The header generates and downloads the resume in the browser from `src/data/portfolio.js` using `pdf-lib`. Empty sections are omitted, and a QR code points to the current site origin. The generated file is not uploaded or stored by the application.
 
 ## Styling and assets
 

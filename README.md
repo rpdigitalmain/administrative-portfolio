@@ -76,9 +76,9 @@ docs/                    Architecture, contribution, and security notes
 
 ## Personalize the portfolio
 
-Edit `src/data/portfolio.js` to replace the sample values with the portfolio owner's name, experience, skills, education, independent learning, and other details. The header downloads a generated resume PDF based on the available profile data, leaving out empty sections.
+Edit `src/data/portfolio.js` to replace the sample values with the portfolio owner's name, experience, skills, education, independent learning, and other details. The header downloads a generated resume PDF based on the available profile data, leaving out empty sections and adding a QR code for the current public site URL.
 
-Edit the `socialLinks` list in `src/data/portfolio.js` to add or remove profiles. Each item has a label, icon key, and URL. WhatsApp uses a phone number with the country code instead of a URL; set `phoneNumber` to activate its link. Add icon keys to `src/icons/portfolioIcons.js` using Font Awesome definitions.
+Edit the `socialLinks` list in `src/data/portfolio.js` to add or remove profiles. Each item has a label, icon key, and URL or phone number. Set `displayValue` to control the short identifier shown in the generated resume. WhatsApp uses a phone number with the country code instead of a URL. Add icon keys to `src/icons/portfolioIcons.js` using Font Awesome definitions.
 
 ## Validate changes
 

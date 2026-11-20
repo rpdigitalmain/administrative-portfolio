@@ -22,8 +22,9 @@ function nonEmptyValues(items, getValue) {
     .filter(Boolean)
 }
 
-export async function createResumePdf(portfolio) {
+export async function createResumePdf(portfolio, currentSiteUrl = globalThis.location?.origin) {
   const { PDFDocument, StandardFonts, rgb } = await import('pdf-lib')
+  const QRCode = await import('qrcode').then((module) => module.default ?? module)
   const document = await PDFDocument.create()
   const regular = await document.embedFont(StandardFonts.Helvetica)
   const bold = await document.embedFont(StandardFonts.HelveticaBold)
@@ -172,11 +173,66 @@ export async function createResumePdf(portfolio) {
   const socialLinks = (Array.isArray(portfolio.socialLinks) ? portfolio.socialLinks : [])
     .map((item) => {
       const phoneNumber = cleanText(item.phoneNumber).replace(/\D/g, '')
-      const url = item.url || (phoneNumber ? `https://wa.me/${phoneNumber}` : '')
-      return [cleanText(item.label), cleanText(url)].filter(Boolean).join(': ')
+      let displayValue = cleanText(item.displayValue)
+
+      if (!displayValue && phoneNumber) displayValue = phoneNumber
+      if (!displayValue && item.url) {
+        try {
+          displayValue = new URL(item.url).pathname.split('/').filter(Boolean).at(-1) || ''
+        } catch {
+          displayValue = cleanText(item.url)
+        }
+      }
+
+      return [cleanText(item.label), displayValue].filter(Boolean).join(': ')
     })
     .filter(Boolean)
   drawListSection('Redes sociais', socialLinks)
+
+  const publicSiteUrl = cleanText(portfolio.siteUrl || currentSiteUrl)
+  if (!publicSiteUrl) throw new Error('A URL do portfólio é necessária para gerar o QR Code.')
+  const portfolioUrl = new URL(publicSiteUrl).origin
+  const qrDataUrl = await QRCode.toDataURL(portfolioUrl, {
+    errorCorrectionLevel: 'H',
+    margin: 1,
+    width: 240,
+    color: {
+      dark: '#292d31',
+      light: '#ffffff',
+    },
+  })
+  const qrCodeImage = await document.embedPng(qrDataUrl)
+
+  ensureSpace(104)
+  cursorY -= 6
+  page.drawLine({
+    start: { x: PAGE_MARGIN, y: cursorY },
+    end: { x: PAGE_SIZE[0] - PAGE_MARGIN, y: cursorY },
+    thickness: 0.7,
+    color: color(COLORS.line),
+  })
+  cursorY -= 10
+  page.drawText('ACESSE O PORTFÓLIO ONLINE', {
+    x: PAGE_MARGIN,
+    y: cursorY - 10,
+    size: 9,
+    font: bold,
+    color: color(COLORS.muted),
+    characterSpacing: 0.4,
+  })
+  page.drawText('Escaneie o código para visitar o site.', {
+    x: PAGE_MARGIN,
+    y: cursorY - 26,
+    size: 9,
+    font: regular,
+    color: color(COLORS.muted),
+  })
+  page.drawImage(qrCodeImage, {
+    x: PAGE_SIZE[0] - PAGE_MARGIN - 72,
+    y: cursorY - 78,
+    width: 72,
+    height: 72,
+  })
 
   pages.forEach((resumePage, index) => {
     resumePage.drawText(`${index + 1} / ${pages.length}`, {
