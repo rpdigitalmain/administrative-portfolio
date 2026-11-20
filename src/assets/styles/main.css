@@ -67,6 +67,7 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  animation: appear-up .45s ease both;
 }
 
 .brand {
@@ -149,6 +150,8 @@ a {
   grid-template-columns: 1fr;
   align-items: end;
   gap: 24px;
+  animation: appear-up .5s ease both;
+  animation-delay: .06s;
 }
 
 .hero h1 {
@@ -216,6 +219,29 @@ a {
   grid-template-columns: 1fr 1fr 1fr 1.08fr;
   grid-template-rows: 1fr 1fr;
   gap: 12px;
+}
+
+.portfolio-grid > .card {
+  animation: appear-up .5s ease both;
+}
+
+.portfolio-grid > .card:nth-child(1) { animation-delay: .12s; }
+.portfolio-grid > .card:nth-child(2) { animation-delay: .19s; }
+.portfolio-grid > .card:nth-child(3) { animation-delay: .26s; }
+.portfolio-grid > .card:nth-child(4) { animation-delay: .33s; }
+.portfolio-grid > .card:nth-child(5) { animation-delay: .4s; }
+.portfolio-grid > .card:nth-child(6) { animation-delay: .47s; }
+
+@keyframes appear-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card {
@@ -764,6 +790,9 @@ a {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
