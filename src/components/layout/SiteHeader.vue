@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { RouterLink } from 'vue-router'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { downloadResumePdf } from '@/services/resumePdf'
@@ -33,21 +34,21 @@ async function handleResumeDownload() {
 
 <template>
   <header class="site-header">
-    <a
+    <RouterLink
       class="brand"
-      href="#home"
+      :to="{ name: 'home', hash: '#home' }"
       :aria-label="`${props.portfolio.name} — início`"
     >
       <span aria-hidden="true">RP</span>
-    </a>
+    </RouterLink>
 
     <nav
       class="header-actions"
       aria-label="Ações principais"
     >
-      <a
+      <RouterLink
         class="pill-button whatsapp-pill-button"
-        href="#social-links"
+        :to="{ name: 'home', hash: '#social-links' }"
         aria-label="Conversar pelo WhatsApp"
       >
         <FontAwesomeIcon
@@ -55,7 +56,7 @@ async function handleResumeDownload() {
           aria-hidden="true"
         />
         <span class="whatsapp-button-label">WhatsApp</span>
-      </a>
+      </RouterLink>
       <button
         class="pill-button pill-button-light"
         type="button"

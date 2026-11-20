@@ -119,6 +119,20 @@
     display: none;
   }
 
+  .site-footer {
+    padding: 20px 18px 12px;
+  }
+
+  .site-footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer-rights {
+    text-align: left;
+  }
+
   /* Hero and experience highlights */
 
   .hero {

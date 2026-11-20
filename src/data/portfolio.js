@@ -5,7 +5,7 @@ export const portfolio = {
   initials: 'RP',
   areas: [
     { label: 'Foco principal', value: 'Administração', style: 'dark' },
-    { label: 'Tipo de serviço', value: 'Auxiliar administrativo', style: 'accent' },
+    { label: 'Tipo de serviço', value: 'Organização e atendimento', style: 'accent' },
   ],
   summary: {
     text: 'A administração é uma atuação secundária para mim. Também tenho conhecimentos em desenvolvimento full stack e estou aberto a diferentes oportunidades de trabalho.',
@@ -61,6 +61,10 @@ export const portfolio = {
       displayValue: '+55 (35) 99918-2635',
     },
   ],
+  contact: {
+    location: 'Cana Verde, MG',
+    availability: 'Disponível para oportunidades',
+  },
   education: [
     {
       title: 'Ensino médio completo',

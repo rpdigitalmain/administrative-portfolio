@@ -1,4 +1,5 @@
 import {
+  faCalendarCheck,
   faClipboardList,
   faFileLines,
   faFilePen,
@@ -6,9 +7,11 @@ import {
   faGlobe,
   faKeyboard,
   faLanguage,
+  faLocationDot,
   faMagnifyingGlass,
   faPalette,
   faPeopleGroup,
+  faPhone,
   faStopwatch,
   faTableCellsLarge,
 } from '@fortawesome/free-solid-svg-icons'
@@ -38,4 +41,7 @@ export const portfolioIcons = {
   github: faGithub,
   instagram: faInstagram,
   whatsapp: faWhatsapp,
+  location: faLocationDot,
+  phone: faPhone,
+  availability: faCalendarCheck,
 }

@@ -1,19 +1,35 @@
 <script setup>
+import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { portfolioIcons } from '@/icons/portfolioIcons'
 
-defineProps({
+const props = defineProps({
   links: {
     type: Array,
     required: true,
   },
+  location: {
+    type: String,
+    default: '',
+  },
+  availability: {
+    type: String,
+    default: '',
+  },
 })
+
+const phoneContact = computed(() => props.links.find((link) => link.phoneNumber))
 
 function getSocialUrl(link) {
   if (link.url) return link.url
 
   const phoneNumber = (link.phoneNumber ?? '').replace(/\D/g, '')
   return phoneNumber ? `https://wa.me/${phoneNumber}` : ''
+}
+
+function getPhoneUrl(link) {
+  const phoneNumber = (link?.phoneNumber ?? '').replace(/\D/g, '')
+  return phoneNumber ? `tel:+${phoneNumber}` : ''
 }
 </script>
 
@@ -25,17 +41,47 @@ function getSocialUrl(link) {
   >
     <div class="card-heading">
       <h2 id="social-links-title">
-        Redes sociais
+        Redes e contato
       </h2>
     </div>
 
     <p class="social-links-copy">
-      Acesse meus perfis e canais de contato.
+      Meus perfis, telefone e disponibilidade.
     </p>
+
+    <ul class="contact-details">
+      <li v-if="props.location">
+        <FontAwesomeIcon
+          :icon="portfolioIcons.location"
+          aria-hidden="true"
+        />
+        <span class="contact-detail-label">Local</span>
+        <span class="contact-detail-value">{{ props.location }}</span>
+      </li>
+      <li v-if="phoneContact">
+        <FontAwesomeIcon
+          :icon="portfolioIcons.phone"
+          aria-hidden="true"
+        />
+        <span class="contact-detail-label">Telefone</span>
+        <a
+          class="contact-detail-value"
+          :href="getPhoneUrl(phoneContact)"
+        >{{ phoneContact.displayValue || phoneContact.phoneNumber }}</a>
+      </li>
+      <li v-if="props.availability">
+        <FontAwesomeIcon
+          :icon="portfolioIcons.availability"
+          aria-hidden="true"
+        />
+        <span class="contact-detail-label">Disponibilidade</span>
+        <span class="contact-detail-value">{{ props.availability }}</span>
+      </li>
+    </ul>
 
     <nav
       class="social-links-list"
-      aria-label="Redes sociais"
+      aria-label="Perfis sociais"
     >
       <template
         v-for="link in links"

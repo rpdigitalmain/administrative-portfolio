@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <main class="not-found-page">
+  <main class="page-content not-found-page">
     <p class="eyebrow">
       404 · Página não encontrada
     </p>

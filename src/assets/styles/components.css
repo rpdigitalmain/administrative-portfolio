@@ -276,6 +276,49 @@
   line-height: 1.55;
 }
 
+.contact-details {
+  margin: 12px 0 4px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.contact-details li {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 14px auto minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.contact-details svg {
+  width: 13px;
+  height: 13px;
+  color: var(--muted);
+}
+
+.contact-detail-label {
+  color: var(--muted);
+}
+
+.contact-detail-value {
+  min-width: 0;
+  color: var(--ink);
+  font-weight: 550;
+}
+
+a.contact-detail-value {
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+a.contact-detail-value:hover {
+  text-decoration: underline;
+}
+
 .social-links-list {
   margin-top: auto;
   display: grid;

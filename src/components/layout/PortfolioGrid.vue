@@ -15,7 +15,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="portfolio-grid">
+  <section
+    class="portfolio-grid"
+    aria-label="Visão geral do portfólio"
+  >
     <ProfileCard :portfolio="props.portfolio" />
     <SummaryCard :summary="props.portfolio.summary" />
     <SkillsCard
@@ -24,10 +27,14 @@ const props = defineProps({
       :languages="props.portfolio.languages"
     />
     <ExperienceCard :experience="props.portfolio.experience" />
-    <SocialLinksCard :links="props.portfolio.socialLinks" />
+    <SocialLinksCard
+      :links="props.portfolio.socialLinks"
+      :location="props.portfolio.contact.location"
+      :availability="props.portfolio.contact.availability"
+    />
     <EducationCard
       :education="props.portfolio.education"
       :independent-learning="props.portfolio.independentLearning"
     />
-  </div>
+  </section>
 </template>
