@@ -1,0 +1,26 @@
+/* Type styles used across page sections */
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 430;
+  letter-spacing: -.035em;
+  line-height: 1.06;
+}
+
+.hero h1 span {
+  color: var(--muted);
+}
+
+.card-heading h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 570;
+  letter-spacing: -.015em;
+}
+
+.not-found-page h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 450;
+  letter-spacing: -.04em;
+}

@@ -48,7 +48,17 @@ npx playwright install chromium
 
 ```text
 src/
-├── assets/styles/       Shared design tokens and responsive styles
+├── assets/styles/       Modular CSS, split by responsibility
+│   ├── main.css         CSS entry point and import order
+│   ├── token.css        Colors and shared design values
+│   ├── reset.css        Browser reset
+│   ├── base.css         Global page defaults
+│   ├── typography.css   Heading and text styles
+│   ├── layout.css       Shell, header, hero, and grid
+│   ├── components.css   Portfolio card styles
+│   ├── pages.css        Route-level page styles
+│   ├── utilities.css    Shared helpers and animation
+│   └── responsive.css   Responsive and reduced-motion rules
 ├── components/
 │   ├── common/          Reusable icon list
 │   ├── layout/          Site header and portfolio grid

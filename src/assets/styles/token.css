@@ -1,0 +1,13 @@
+/* Shared design tokens */
+
+:root {
+  --ink: #292d31;
+  --muted: #626970;
+  --line: #dfe2e5;
+  --surface: #fff;
+  --dark: #343a40;
+  --dark-soft: #495057;
+  --accent: #e1e6e9;
+  --accent-ink: #30383e;
+  --radius: 14px;
+}

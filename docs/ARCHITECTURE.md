@@ -40,7 +40,7 @@ Static hosts must rewrite unknown paths to `/index.html` for history-mode routin
 - `portfolio/` contains the hero and cards for the profile, summary, skills, experience, social links, and education.
 - `pages/` contains route-level views.
 
-`src/data/portfolio.js` is the single source for editable profile content. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. Presentation styles and responsive breakpoints live in `src/assets/styles/main.css`.
+`src/data/portfolio.js` is the single source for editable profile content. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. CSS is organized under `src/assets/styles/` by responsibility; `main.css` imports the token, reset, base, typography, layout, component, page, utility, and responsive files in order.
 
 ## Social links and icons
 
@@ -53,7 +53,7 @@ Social profiles are records in `portfolio.socialLinks`, each with a label, URL, 
 ## Styling and assets
 
 - Inter is self-hosted through `@fontsource-variable/inter`.
-- `src/assets/styles/main.css` contains design tokens, base styles, component styles, and responsive breakpoints.
+- `src/assets/styles/main.css` is the CSS entry point. The files beside it separate tokens, reset, base styles, typography, layout, cards, route styles, utilities, and responsive rules.
 - The layout adapts from a four-column desktop grid to two columns on tablets and a single column on narrow screens.
 - Reduced-motion preferences are respected for CSS transitions.
 

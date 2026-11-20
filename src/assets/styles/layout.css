@@ -1,0 +1,140 @@
+/* Page shell and header */
+
+.app-shell {
+  width: min(100%, 1480px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  animation: appear-up .45s ease both;
+}
+
+.brand {
+  border: 1px solid #b8bec3;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 15px;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pill-button {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 12.5px;
+  font-weight: 550;
+  text-decoration: none;
+  transition: background .16s ease, transform .16s ease;
+}
+
+.pill-button:hover {
+  transform: translateY(-1px);
+}
+
+.pill-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.pill-button-dark {
+  border-color: var(--dark);
+  background: var(--dark);
+  color: white;
+}
+
+.pill-button-light {
+  border-color: var(--line);
+  background: #fff;
+  color: #202428;
+}
+
+.pill-button-light:hover {
+  background: #f7f8f9;
+}
+
+.whatsapp-pill-button {
+  border-color: #25d366;
+  background: #25d366;
+  color: #fff;
+}
+
+.whatsapp-pill-button:hover {
+  background: #1ebe5d;
+}
+
+.page-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Hero and experience highlights */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  gap: 24px;
+  animation: appear-up .5s ease both;
+  animation-delay: .06s;
+}
+
+.area-list {
+  max-width: 720px;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.4fr 1fr;
+  gap: 10px;
+}
+
+.area-bar {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+}
+
+.area-bar-dark {
+  background: var(--dark);
+  color: white;
+}
+
+.area-bar-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.area-bar-soft {
+  background: #e8ebed;
+  color: var(--muted);
+}
+
+.area-bar-outline {
+  border: 1px solid #adb4ba;
+  color: var(--muted);
+}
