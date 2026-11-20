@@ -1,0 +1,74 @@
+# Architecture
+
+## Overview
+
+This project is a client-rendered, single-page application built with Vue 3 and Vite. Vue Router renders the home portfolio and a not-found page. Portfolio copy and records live in one JavaScript data module; components present those records without a global store or backend.
+
+```mermaid
+flowchart TD
+    HTML[index.html] --> Entry[src/main.js]
+    Entry --> App[src/App.vue]
+    Entry --> Styles[assets/styles/main.css]
+    App --> Router[router/index.js]
+    Router --> Home[pages/HomePage.vue]
+    Router --> NotFound[pages/NotFoundPage.vue]
+    Home --> Header[components/layout/SiteHeader.vue]
+    Home --> Hero[components/portfolio/HeroSection.vue]
+    Home --> Grid[components/layout/PortfolioGrid.vue]
+    Grid --> Cards[Portfolio cards]
+    Data[data/portfolio.js] --> Hero
+    Data --> Cards
+    Social[Social links card] --> External[External social profiles]
+```
+
+## Application startup and routing
+
+- `index.html` defines the document language, metadata, and `#app` mount point.
+- `src/main.js` loads the Inter font, shared styles, router, and root component.
+- `src/App.vue` renders the active route through `RouterView`.
+- `src/router/index.js` maps `/` to the home page and unknown paths to the not-found page. Each route navigation starts at the top of the document.
+- `src/pages/HomePage.vue` composes the site header, hero, and portfolio grid.
+
+Static hosts must rewrite unknown paths to `/index.html` for history-mode routing. The included Nginx Docker configuration provides this fallback.
+
+## Components and data
+
+`src/components/` is grouped by responsibility:
+
+- `common/` contains reusable presentation elements such as the icon list for skills, tools, and languages.
+- `layout/` contains the page header and the grid that arranges the portfolio cards.
+- `portfolio/` contains the hero and cards for the profile, summary, skills, experience, social links, and education.
+- `pages/` contains route-level views.
+
+`src/data/portfolio.js` is the single source for editable profile content, including the public Cloudflare R2 profile-photo URL. The profile card falls back to the initials when no photo is configured or the request fails. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. CSS is organized under `src/assets/styles/` by responsibility; `main.css` imports the token, reset, base, typography, layout, component, page, utility, and responsive files in order.
+
+## Social links and icons
+
+Social profiles are records in `portfolio.socialLinks`, each with a label and icon key. Most use a URL; the header and contact card build WhatsApp links from the configured international phone number. `displayValue` provides a short identifier for the generated resume instead of printing full profile URLs. If no WhatsApp number is configured, the header button and contact-card item are disabled. `SocialLinksCard.vue` renders these records, and `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions.
+
+## Resume file
+
+The header generates and downloads the resume in the browser from `src/data/portfolio.js` using `pdf-lib`. Empty sections are omitted, and a QR code points to the current site origin. The generated file is not uploaded or stored by the application.
+
+## Styling and assets
+
+- The Latin Inter variable-font subset is self-hosted; other glyphs fall back to system fonts.
+- `src/assets/styles/main.css` is the CSS entry point. The files beside it separate tokens, reset, base styles, typography, layout, cards, route styles, utilities, and responsive rules.
+- The layout adapts from a four-column desktop grid to two columns on tablets and a single column on narrow screens.
+- Reduced-motion preferences are respected for CSS transitions.
+
+## Build, test, and runtime
+
+- `npm run dev` starts Vite for local development.
+- `npm run lint` checks JavaScript and Vue files with ESLint.
+- `npm run build` creates the static production bundle in `dist/`.
+- `npm run test:unit` checks portfolio data contracts, PDF generation, pagination, and filename sanitization with Node's built-in test runner.
+- `npm run preview` serves the production bundle locally.
+- `npm run test:e2e` starts Vite and runs the Playwright Chromium integration suite from `test/e2e/`.
+- `npm test` runs the unit and browser integration suites.
+- Playwright stores local artifacts in a temporary system folder and removes it after the run; it does not create a `test-results/` folder in the repository.
+- Docker uses a Node build stage and an Nginx runtime stage.
+
+## CI and release
+
+GitHub Actions runs lint, build, and E2E tests on Windows and Linux across Node.js 22.18.0 and 24.12.0. Linux CI also audits production dependencies and builds the Docker image. A `v*` tag triggers the release workflow, which reruns lint, build, and E2E checks but does not publish or deploy the site.

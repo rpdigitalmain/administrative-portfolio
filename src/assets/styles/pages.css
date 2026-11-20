@@ -1,0 +1,21 @@
+/* Not-found page */
+
+.not-found-page {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.not-found-page h1,
+.not-found-page p {
+  max-width: 38rem;
+  margin: 0;
+}
+
+.not-found-page > p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.6;
+}

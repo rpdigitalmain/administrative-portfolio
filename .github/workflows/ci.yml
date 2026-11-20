@@ -37,6 +37,9 @@ jobs:
       - name: Check lint
         run: npm run lint
 
+      - name: Run unit tests
+        run: npm run test:unit
+
       - name: Build production bundle
         run: npm run build
 
@@ -51,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: playwright-results-windows-node-${{ matrix.node-version }}
-          path: test-results/
+          path: ${{ runner.temp }}/administrative-portfolio-playwright-${{ github.job }}-${{ github.run_id }}
           if-no-files-found: ignore
           retention-days: 7
 
@@ -80,6 +83,9 @@ jobs:
       - name: Check lint
         run: npm run lint
 
+      - name: Run unit tests
+        run: npm run test:unit
+
       - name: Build production bundle
         run: npm run build
 
@@ -93,14 +99,14 @@ jobs:
         run: npm audit --audit-level=high --omit dev
 
       - name: Build Docker image
-        run: docker build -t photography-portfolio-helena-duarte:latest .
+        run: docker build -t administrative-portfolio:latest .
 
       - name: Upload Playwright results
         if: always() && !env.ACT
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: playwright-results-linux-node-${{ matrix.node-version }}
-          path: test-results/
+          path: ${{ runner.temp }}/administrative-portfolio-playwright-${{ github.job }}-${{ github.run_id }}
           if-no-files-found: ignore
           retention-days: 7
 
