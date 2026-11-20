@@ -29,7 +29,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1100px) {
   .page-content {
     gap: 20px;
   }
@@ -43,32 +43,46 @@
   /* Portfolio cards */
 
   .portfolio-grid {
+    flex: 0 0 auto;
     min-height: 0;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: auto;
+    grid-template-areas:
+      'profile summary'
+      'skills experience'
+      'social education';
+    align-content: start;
   }
 
   .portfolio-grid > .card {
-    min-height: 230px;
+    min-height: 260px;
     grid-column: auto;
     grid-row: auto;
   }
 
-  .portfolio-grid > .experience-card,
-  .portfolio-grid > .education-card {
-    grid-column: 1 / -1;
-  }
+  .portfolio-grid > .profile-card { grid-area: profile; }
+  .portfolio-grid > .summary-card { grid-area: summary; }
+  .portfolio-grid > .skills-card { grid-area: skills; }
+  .portfolio-grid > .experience-card { grid-area: experience; }
+  .portfolio-grid > .social-links-card { grid-area: social; }
+  .portfolio-grid > .education-card { grid-area: education; }
 
   .portfolio-grid > .experience-card {
-    min-height: 370px;
+    min-height: 300px;
   }
 
   .portfolio-grid > .education-card {
-    min-height: 250px;
+    min-height: 280px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) and (min-width: 701px) {
+  .education-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
   /* Page shell and header */
 
   .app-shell {
@@ -119,11 +133,19 @@
 
   .portfolio-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'profile'
+      'summary'
+      'skills'
+      'experience'
+      'social'
+      'education';
   }
 
   .portfolio-grid > .card {
     min-height: 220px;
     grid-column: 1;
+    grid-row: auto;
   }
 
   .portfolio-grid > .experience-card {
