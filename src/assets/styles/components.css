@@ -69,6 +69,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center 32%;
+  transition: transform .3s ease;
 }
 
 .profile-caption {
@@ -326,6 +327,12 @@ a.contact-detail-value {
 
 a.contact-detail-value:hover {
   text-decoration: underline;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .profile-card:hover .profile-photo {
+    transform: scale(1.04);
+  }
 }
 
 .social-links-list {

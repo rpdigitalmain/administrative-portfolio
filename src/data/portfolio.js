@@ -12,7 +12,7 @@ export const portfolio = {
     { label: 'Tipo de serviço', value: 'Organização e atendimento', style: 'accent' },
   ],
   summary: {
-    text: 'A administração é uma atuação secundária para mim. Também tenho conhecimentos em desenvolvimento full stack e estou aberto a diferentes oportunidades de trabalho.',
+    text: 'Atuo com conhecimentos em administração e desenvolvimento full stack, combinando organização e habilidades técnicas para apoiar diferentes projetos e necessidades profissionais.',
     metric: '',
     result: '',
   },

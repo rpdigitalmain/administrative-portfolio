@@ -14,8 +14,8 @@ defineProps({
   >
     <div class="hero-copy">
       <h1 id="page-title">
-        Olá, eu sou {{ portfolio.name }}<br>
-        <span>{{ portfolio.role }}</span>
+        Seja bem-vindo ao meu portfólio!<br>
+        <span>Olá, eu sou {{ portfolio.name }}.</span>
       </h1>
 
       <div
