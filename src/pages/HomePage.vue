@@ -7,7 +7,7 @@ import { portfolio } from '@/data/portfolio'
 
 <template>
   <div class="app-shell">
-    <SiteHeader :name="portfolio.name" />
+    <SiteHeader :portfolio="portfolio" />
 
     <main
       id="home"

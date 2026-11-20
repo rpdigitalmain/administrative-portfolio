@@ -5,15 +5,15 @@ import { RouterLink } from 'vue-router'
 <template>
   <main class="not-found-page">
     <p class="eyebrow">
-      404 · Page not found
+      404 · Página não encontrada
     </p>
-    <h1>We couldn’t find that page.</h1>
-    <p>The link may be outdated, or the address may have been entered incorrectly.</p>
+    <h1>Não encontramos esta página.</h1>
+    <p>O link pode estar desatualizado ou o endereço pode ter sido digitado incorretamente.</p>
     <RouterLink
       class="pill-button pill-button-dark"
       to="/"
     >
-      Return to the portfolio
+      Voltar ao portfólio
     </RouterLink>
   </main>
 </template>

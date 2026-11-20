@@ -4,7 +4,7 @@ defineProps({
     type: Array,
     required: true,
   },
-  certifications: {
+  independentLearning: {
     type: Array,
     required: true,
   },
@@ -19,13 +19,13 @@ defineProps({
   >
     <div class="card-heading">
       <h2 id="education-title">
-        Education &amp; certifications
+        Formação e aprendizado independente
       </h2>
     </div>
 
     <div class="education-columns">
       <div class="education-group">
-        <h3>Education</h3>
+        <h3>Formação</h3>
         <ul>
           <li
             v-for="item in education"
@@ -43,10 +43,10 @@ defineProps({
       </div>
 
       <div class="education-group">
-        <h3>Certifications</h3>
+        <h3>Aprendizado independente</h3>
         <ul>
           <li
-            v-for="item in certifications"
+            v-for="item in independentLearning"
             :key="`${item.title}-${item.institution}`"
             class="education-entry"
             :class="`education-entry-${item.style}`"

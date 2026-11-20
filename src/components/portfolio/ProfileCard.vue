@@ -10,12 +10,12 @@ defineProps({
 <template>
   <article
     class="card profile-card"
-    aria-label="Profile"
+    aria-label="Perfil"
   >
     <div
       class="profile-initials"
       role="img"
-      :aria-label="`Profile photo placeholder for ${portfolio.name}`"
+      :aria-label="`Espaço reservado para a foto de perfil de ${portfolio.name}`"
     >
       {{ portfolio.initials }}
     </div>
@@ -25,7 +25,6 @@ defineProps({
         <strong>{{ portfolio.name }}</strong>
         <span>{{ portfolio.role }}</span>
       </div>
-      <span class="profile-status">Open to opportunities</span>
     </div>
   </article>
 </template>

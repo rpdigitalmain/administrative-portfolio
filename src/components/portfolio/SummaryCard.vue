@@ -14,13 +14,16 @@ defineProps({
   >
     <div class="card-heading">
       <h2 id="summary-title">
-        Summary
+        Resumo
       </h2>
     </div>
 
     <p>{{ summary.text }}</p>
 
-    <div class="summary-metric">
+    <div
+      v-if="summary.metric || summary.result"
+      class="summary-metric"
+    >
       <strong>{{ summary.metric }}</strong>
       <span>{{ summary.result }}</span>
     </div>

@@ -14,13 +14,13 @@ defineProps({
   >
     <div class="hero-copy">
       <h1 id="page-title">
-        Hello, I’m {{ portfolio.name }}<br>
+        Olá, eu sou {{ portfolio.name }}<br>
         <span>{{ portfolio.role }}</span>
       </h1>
 
       <div
         class="area-list"
-        aria-label="Areas of expertise"
+        aria-label="Áreas de atuação"
       >
         <div
           v-for="area in portfolio.areas"

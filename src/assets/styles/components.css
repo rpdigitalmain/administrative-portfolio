@@ -90,13 +90,6 @@
   opacity: .88;
 }
 
-.profile-caption .profile-status {
-  padding: 7px 10px;
-  border: 1px solid rgba(255,255,255,.72);
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
 /* Summary card */
 
 .summary-card {
@@ -301,8 +294,11 @@
   color: var(--text);
   font-size: 12.5px;
   font-weight: 550;
+  font-family: inherit;
+  text-align: left;
   text-decoration: none;
   transition: background .16s ease, border-color .16s ease, transform .16s ease;
+  cursor: pointer;
 }
 
 .social-link:hover {
@@ -320,6 +316,12 @@
 .social-link-arrow {
   margin-left: auto;
   color: var(--muted);
+}
+
+.social-link-disabled {
+  background: #f1f3f4;
+  color: var(--muted);
+  cursor: not-allowed;
 }
 
 /* Education card */

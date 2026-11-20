@@ -27,7 +27,7 @@ const props = defineProps({
     <SocialLinksCard :links="props.portfolio.socialLinks" />
     <EducationCard
       :education="props.portfolio.education"
-      :certifications="props.portfolio.certifications"
+      :independent-learning="props.portfolio.independentLearning"
     />
   </div>
 </template>

@@ -25,13 +25,13 @@ defineProps({
   >
     <div class="card-heading">
       <h2 id="skills-title">
-        Skills
+        Competências
       </h2>
     </div>
 
     <IconList
       :items="skills"
-      aria-label="Professional skills"
+      aria-label="Competências profissionais"
       accent-first
     />
 
@@ -39,24 +39,24 @@ defineProps({
       v-if="tools.length"
       class="subheading"
     >
-      Tools
+      Ferramentas
     </h3>
     <IconList
       v-if="tools.length"
       :items="tools"
-      aria-label="Tools"
+      aria-label="Ferramentas"
     />
 
     <h3
       v-if="languages.length"
       class="subheading"
     >
-      Languages
+      Idiomas
     </h3>
     <IconList
       v-if="languages.length"
       :items="languages"
-      aria-label="Languages"
+      aria-label="Idiomas"
     />
   </section>
 </template>

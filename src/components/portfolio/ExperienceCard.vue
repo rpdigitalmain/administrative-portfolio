@@ -18,7 +18,7 @@ defineProps({
   >
     <div class="card-heading">
       <h2 id="experience-title">
-        Experience
+        Experiência
       </h2>
       <span class="experience-count">{{ String(experience.length).padStart(2, '0') }}</span>
     </div>
