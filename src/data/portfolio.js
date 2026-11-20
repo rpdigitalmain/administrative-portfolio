@@ -1,8 +1,12 @@
 // Profile details are being personalized. Confirm the remaining sample records before publishing.
+const profileImage = 'https://pub-752ba373c3a048999b2940bcdfbc0119.r2.dev/images/profile-photo.webp'
+
 export const portfolio = {
   name: 'Ruan Pablo',
   role: 'Auxiliar administrativo',
   initials: 'RP',
+  // Set to null to show the initials fallback instead of a profile photo.
+  profileImage,
   areas: [
     { label: 'Foco principal', value: 'Administração', style: 'dark' },
     { label: 'Tipo de serviço', value: 'Organização e atendimento', style: 'accent' },

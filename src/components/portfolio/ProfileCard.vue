@@ -1,10 +1,14 @@
 <script setup>
+import { ref } from 'vue'
+
 defineProps({
   portfolio: {
     type: Object,
     required: true,
   },
 })
+
+const imageFailed = ref(false)
 </script>
 
 <template>
@@ -12,10 +16,18 @@ defineProps({
     class="card profile-card"
     aria-label="Perfil"
   >
+    <img
+      v-if="portfolio.profileImage && !imageFailed"
+      class="profile-photo"
+      :src="portfolio.profileImage"
+      :alt="`Retrato ilustrativo de ${portfolio.name}`"
+      @error="imageFailed = true"
+    />
+
     <div
+      v-else
       class="profile-initials"
-      role="img"
-      :aria-label="`Espaço reservado para a foto de perfil de ${portfolio.name}`"
+      aria-hidden="true"
     >
       {{ portfolio.initials }}
     </div>
