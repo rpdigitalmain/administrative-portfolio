@@ -14,9 +14,21 @@ export const portfolio = {
     metric: '18',
     result: 'hours saved each month with better file organization',
   },
-  skills: ['Organization', 'Office support', 'Data entry', 'Basic web development'],
-  tools: ['Microsoft Excel', 'Google Sheets', 'Trello'],
-  languages: ['Portuguese — Native', 'English — A2'],
+  skills: [
+    { label: 'Organization', icon: 'organization' },
+    { label: 'Office support', icon: 'office-support' },
+    { label: 'Data entry', icon: 'data-entry' },
+    { label: 'Basic web development', icon: 'web-development' },
+  ],
+  tools: [
+    { label: 'Microsoft Excel', icon: 'excel' },
+    { label: 'Google Sheets', icon: 'google-sheets' },
+    { label: 'Trello', icon: 'trello' },
+  ],
+  languages: [
+    { label: 'Portuguese — Native', icon: 'portuguese' },
+    { label: 'English — A2', icon: 'english' },
+  ],
   experience: [
     {
       title: 'Administrative Assistant',
@@ -43,10 +55,11 @@ export const portfolio = {
       result: 'Updated web pages and fixed simple content errors.',
     },
   ],
-  contact: {
-    whatsappNumber: '', // Add a real number before enabling WhatsApp contact.
-    whatsappMessage: 'Hello, I would like to talk about an opportunity.',
-  },
+  socialLinks: [
+    { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/' },
+    { label: 'GitHub', icon: 'github', url: 'https://github.com/' },
+    { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
+  ],
   education: [
     {
       title: 'Business Administration Diploma',

@@ -4,7 +4,7 @@ import ExperienceCard from '@/components/portfolio/ExperienceCard.vue'
 import ProfileCard from '@/components/portfolio/ProfileCard.vue'
 import SkillsCard from '@/components/portfolio/SkillsCard.vue'
 import SummaryCard from '@/components/portfolio/SummaryCard.vue'
-import WhatsAppCtaCard from '@/components/portfolio/WhatsAppCtaCard.vue'
+import SocialLinksCard from '@/components/portfolio/SocialLinksCard.vue'
 
 const props = defineProps({
   portfolio: {
@@ -24,7 +24,7 @@ const props = defineProps({
       :languages="props.portfolio.languages"
     />
     <ExperienceCard :experience="props.portfolio.experience" />
-    <WhatsAppCtaCard :contact="props.portfolio.contact" />
+    <SocialLinksCard :links="props.portfolio.socialLinks" />
     <EducationCard
       :education="props.portfolio.education"
       :certifications="props.portfolio.certifications"

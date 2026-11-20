@@ -42,6 +42,3 @@ __screenshots__/
 .npm-cache/
 .dev
 
-# Playwright
-/test-results/
-/playwright-report/

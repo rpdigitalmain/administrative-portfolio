@@ -1,4 +1,6 @@
 <script setup>
+import IconList from '@/components/common/IconList.vue'
+
 defineProps({
   skills: {
     type: Array,
@@ -27,50 +29,34 @@ defineProps({
       </h2>
     </div>
 
-    <ul
-      class="chip-list"
+    <IconList
+      :items="skills"
       aria-label="Professional skills"
-    >
-      <li
-        v-for="(skill, index) in skills"
-        :key="skill"
-        class="chip"
-        :class="{ 'chip-accent': index === 0 }"
-      >
-        {{ skill }}
-      </li>
-    </ul>
+      accent-first
+    />
 
-    <h3 class="subheading">
+    <h3
+      v-if="tools.length"
+      class="subheading"
+    >
       Tools
     </h3>
-    <ul
-      class="chip-list"
+    <IconList
+      v-if="tools.length"
+      :items="tools"
       aria-label="Tools"
-    >
-      <li
-        v-for="tool in tools"
-        :key="tool"
-        class="chip"
-      >
-        {{ tool }}
-      </li>
-    </ul>
+    />
 
-    <h3 class="subheading">
+    <h3
+      v-if="languages.length"
+      class="subheading"
+    >
       Languages
     </h3>
-    <ul
-      class="chip-list"
+    <IconList
+      v-if="languages.length"
+      :items="languages"
       aria-label="Languages"
-    >
-      <li
-        v-for="language in languages"
-        :key="language"
-        class="chip"
-      >
-        {{ language }}
-      </li>
-    </ul>
+    />
   </section>
 </template>

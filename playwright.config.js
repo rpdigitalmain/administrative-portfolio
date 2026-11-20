@@ -1,7 +1,20 @@
 import { defineConfig, devices } from '@playwright/test'
+import os from 'node:os'
+import path from 'node:path'
+
+const outputRoot = process.env.CI && process.env.RUNNER_TEMP
+  ? process.env.RUNNER_TEMP
+  : os.tmpdir()
+const outputName = `administrative-portfolio-playwright-${process.env.GITHUB_JOB ?? 'local'}-${process.env.GITHUB_RUN_ID ?? process.pid}`
+const outputDir = path.join(outputRoot, outputName)
+
+process.env.PLAYWRIGHT_OUTPUT_DIR = outputDir
+process.env.PLAYWRIGHT_OUTPUT_ROOT = outputRoot
 
 export default defineConfig({
   testDir: './test/e2e',
+  outputDir,
+  globalTeardown: './test/e2e/global-teardown.js',
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,

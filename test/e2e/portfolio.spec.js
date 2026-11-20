@@ -11,24 +11,27 @@ test.describe('Administrative portfolio', () => {
     await expect(page.getByRole('heading', { name: 'Skills' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Experience' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Education & certifications' })).toBeVisible()
+    const skills = page.getByRole('list', { name: 'Professional skills' })
+    await expect(skills.getByRole('listitem')).toHaveCount(4)
+    await expect(skills.locator('svg')).toHaveCount(4)
+    const tools = page.getByRole('list', { name: 'Tools' })
+    await expect(tools.getByRole('listitem')).toHaveCount(3)
+    await expect(tools.locator('svg')).toHaveCount(3)
+    const languages = page.getByRole('list', { name: 'Languages' })
+    await expect(languages.getByRole('listitem')).toHaveCount(2)
+    await expect(languages.locator('svg')).toHaveCount(2)
     await expect(page.getByText('Years of experience')).toHaveCount(0)
   })
 
-  test('navigates to the WhatsApp call to action', async ({ page }) => {
+  test('navigates from the WhatsApp button to the social links card', async ({ page }) => {
     await page.goto('/')
     await page.getByRole('link', { name: 'WhatsApp' }).click()
 
-    await expect(page).toHaveURL(/#whatsapp$/)
-    await expect(page.locator('#whatsapp')).toBeInViewport()
-    await expect(page.getByRole('heading', { name: 'Let’s talk' })).toBeVisible()
-  })
-
-  test('keeps the WhatsApp action disabled until a number is configured', async ({ page }) => {
-    await page.goto('/')
-
-    await expect(
-      page.getByRole('button', { name: 'Add your number in portfolio.js to activate WhatsApp' }),
-    ).toBeDisabled()
+    await expect(page).toHaveURL(/#social-links$/)
+    await expect(page.locator('#social-links')).toBeInViewport()
+    await expect(page.getByRole('heading', { name: 'Social links' })).toBeVisible()
+    await expect(page.getByRole('navigation', { name: 'Social media' }).getByRole('link'))
+      .toHaveCount(3)
   })
 
   test('provides a downloadable resume link', async ({ page }) => {

@@ -114,6 +114,26 @@ a {
   color: white;
 }
 
+.pill-button-light {
+  border-color: var(--line);
+  background: #fff;
+  color: #202428;
+}
+
+.pill-button-light:hover {
+  background: #f7f8f9;
+}
+
+.whatsapp-pill-button {
+  border-color: #25d366;
+  background: #25d366;
+  color: #fff;
+}
+
+.whatsapp-pill-button:hover {
+  background: #1ebe5d;
+}
+
 .page-content {
   flex: 1;
   min-height: 0;
@@ -335,14 +355,28 @@ a {
 
 .chip {
   padding: 6px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border-radius: 999px;
   background: #f0f2f3;
   color: var(--ink);
   font-size: 12px;
 }
 
+.chip svg {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  color: var(--muted);
+}
+
 .chip-accent {
   background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.chip-accent svg {
   color: var(--accent-ink);
 }
 
@@ -440,53 +474,56 @@ a {
   line-height: 1.45;
 }
 
-/* WhatsApp call-to-action */
+/* Social links */
 
-.whatsapp-card {
+.social-links-card {
   grid-column: 1;
   grid-row: 2;
 }
 
-.whatsapp-copy {
+.social-links-copy {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.55;
 }
 
-.whatsapp-action {
-  min-height: 44px;
+.social-links-list {
   margin-top: auto;
-  padding: 10px 13px;
+  display: grid;
+  gap: 8px;
+}
+
+.social-link {
+  min-height: 42px;
+  padding: 9px 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
-  border: 0;
-  border-radius: 11px;
-  background: #e4f0e8;
-  color: #285c3b;
-  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
   font-size: 12.5px;
-  font-weight: 600;
-  text-align: left;
+  font-weight: 550;
   text-decoration: none;
-  transition: background .16s ease, transform .16s ease;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
 }
 
-.whatsapp-action svg {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
+.social-link:hover {
+  transform: translateY(-1px);
+  border-color: #c7ccd1;
+  background: #f7f8f9;
 }
 
-.whatsapp-action:not(:disabled):hover {
-  background: #d8eadf;
+.social-link svg {
+  width: 17px;
+  height: 17px;
+  color: var(--dark);
 }
 
-.whatsapp-action:disabled {
-  cursor: not-allowed;
-  background: #f0f2f3;
+.social-link-arrow {
+  margin-left: auto;
   color: var(--muted);
 }
 
@@ -683,7 +720,7 @@ a {
     font-size: 11.5px;
   }
 
-  .header-actions .pill-button:not(.pill-button-dark) {
+  .header-actions .whatsapp-pill-button {
     display: none;
   }
 

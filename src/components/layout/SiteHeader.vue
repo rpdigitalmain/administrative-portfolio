@@ -26,8 +26,8 @@ defineProps({
       aria-label="Main actions"
     >
       <a
-        class="pill-button"
-        href="#whatsapp"
+        class="pill-button whatsapp-pill-button"
+        href="#social-links"
       >
         <FontAwesomeIcon
           :icon="faWhatsapp"
@@ -36,7 +36,7 @@ defineProps({
         WhatsApp
       </a>
       <a
-        class="pill-button pill-button-dark"
+        class="pill-button pill-button-light"
         href="/resume.pdf"
         download
       >

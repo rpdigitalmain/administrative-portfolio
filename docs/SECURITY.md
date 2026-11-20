@@ -19,4 +19,4 @@ Avoid including credentials, private user data, or other secrets in a report. Al
 
 ## Scope and data handling
 
-Reports may cover the application source, its dependencies, or its build and deployment configuration. The portfolio is a static client-side application. It does not collect or store form submissions; the WhatsApp action opens an external WhatsApp link after a phone number is configured.
+Reports may cover the application source, its dependencies, or its build and deployment configuration. The portfolio is a static client-side application. It does not collect or store form submissions; social links open external profiles.

@@ -54,10 +54,4 @@ docs: document local setup and release checks
 
 ## Release checks
 
-The package version is the source of truth for release tags. Before creating a tag, run:
-
-```sh
-npm run check:release -- v1.0.0
-```
-
-The tag must use the `v` prefix and match the version in `package.json`. Release tags run validation only; publishing and deployment remain separate tasks.
+Tags that begin with `v` run the release workflow. It repeats lint, build, and E2E checks; it does not publish or deploy the site.

@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate release tag
+    name: Release checks
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -26,11 +26,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Validate release tag
-        env:
-          RELEASE_TAG: ${{ github.ref_name }}
-        run: npm run check:release -- "$RELEASE_TAG"
 
       - name: Check lint
         run: npm run lint

@@ -18,7 +18,7 @@ flowchart TD
     Grid --> Cards[Portfolio cards]
     Data[data/portfolio.js] --> Hero
     Data --> Cards
-    WhatsApp[WhatsApp CTA] --> External[WhatsApp Click to Chat]
+    Social[Social links card] --> External[External social profiles]
 ```
 
 ## Application startup and routing
@@ -35,15 +35,16 @@ Static hosts must rewrite unknown paths to `/index.html` for history-mode routin
 
 `src/components/` is grouped by responsibility:
 
+- `common/` contains reusable presentation elements such as the icon list for skills, tools, and languages.
 - `layout/` contains the page header and the grid that arranges the portfolio cards.
-- `portfolio/` contains the hero and cards for the profile, summary, skills, experience, contact CTA, and education.
+- `portfolio/` contains the hero and cards for the profile, summary, skills, experience, social links, and education.
 - `pages/` contains route-level views.
 
-`src/data/portfolio.js` is the single source for editable profile content. It exports the `portfolio` object consumed by the home page and passed to its child components. Presentation styles and responsive breakpoints live in `src/assets/styles/main.css`.
+`src/data/portfolio.js` is the single source for editable profile content. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. Presentation styles and responsive breakpoints live in `src/assets/styles/main.css`.
 
-## WhatsApp contact action
+## Social links and icons
 
-`contact.whatsappNumber` in `src/data/portfolio.js` accepts digits only, including country and area codes. `WhatsAppCtaCard.vue` strips non-digit characters defensively, URL-encodes the configured message, and builds a `https://wa.me/` link. If no number is configured, the card shows a disabled setup prompt. Contact takes place in WhatsApp; this application does not submit or store the message.
+Social profiles are records in `portfolio.socialLinks`, each with a label, URL, and icon key. `SocialLinksCard.vue` renders the records as external links. `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions, so new platforms can be added by updating the data and icon registry without changing the card component.
 
 ## Resume file
 
@@ -63,9 +64,9 @@ Static hosts must rewrite unknown paths to `/index.html` for history-mode routin
 - `npm run build` creates the static production bundle in `dist/`.
 - `npm run preview` serves the production bundle locally.
 - `npm run test:e2e` starts Vite and runs the Playwright Chromium suite from `test/e2e/`.
-- `npm run check:release -- v1.0.0` verifies that a tag matches `package.json`.
+- Playwright stores local artifacts in a temporary system folder and removes it after the run; it does not create a `test-results/` folder in the repository.
 - Docker uses a Node build stage and an Nginx runtime stage.
 
 ## CI and release
 
-GitHub Actions runs lint, build, and E2E tests on Windows and Linux across Node.js 22.18.0 and 24.12.0. Linux CI also audits production dependencies and builds the Docker image. A `v*` tag triggers the release validation workflow; that workflow validates the version and reruns the quality checks but does not publish or deploy the site.
+GitHub Actions runs lint, build, and E2E tests on Windows and Linux across Node.js 22.18.0 and 24.12.0. Linux CI also audits production dependencies and builds the Docker image. A `v*` tag triggers the release workflow, which reruns lint, build, and E2E checks but does not publish or deploy the site.
