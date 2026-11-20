@@ -38,7 +38,7 @@ async function handleResumeDownload() {
       href="#home"
       :aria-label="`${props.portfolio.name} — início`"
     >
-      {{ props.portfolio.name }}
+      <span aria-hidden="true">RP</span>
     </a>
 
     <nav
@@ -48,12 +48,13 @@ async function handleResumeDownload() {
       <a
         class="pill-button whatsapp-pill-button"
         href="#social-links"
+        aria-label="Conversar pelo WhatsApp"
       >
         <FontAwesomeIcon
           :icon="faWhatsapp"
           aria-hidden="true"
         />
-        WhatsApp
+        <span class="whatsapp-button-label">WhatsApp</span>
       </a>
       <button
         class="pill-button pill-button-light"

@@ -81,7 +81,8 @@
   }
 
   .brand {
-    padding: 7px 12px;
+    width: 42px;
+    height: 42px;
   }
 
   .header-actions {
@@ -95,6 +96,12 @@
   }
 
   .header-actions .whatsapp-pill-button {
+    width: 38px;
+    min-width: 38px;
+    padding: 8px;
+  }
+
+  .whatsapp-button-label {
     display: none;
   }
 
