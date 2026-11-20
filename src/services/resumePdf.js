@@ -29,6 +29,7 @@ export async function createResumePdf(portfolio, currentSiteUrl = globalThis.loc
   const regular = await document.embedFont(StandardFonts.Helvetica)
   const bold = await document.embedFont(StandardFonts.HelveticaBold)
   const color = (value) => rgb(value.r, value.g, value.b)
+  // Track generated pages so the final page count can be added after pagination.
   const pages = []
   let page
   let cursorY
@@ -45,6 +46,7 @@ export async function createResumePdf(portfolio, currentSiteUrl = globalThis.loc
   }
 
   const ensureSpace = (height) => {
+    // Start a fresh page before content reaches the reserved footer area.
     if (!page || cursorY - height < PAGE_MARGIN + 20) addPage()
   }
 
@@ -248,14 +250,14 @@ export async function createResumePdf(portfolio, currentSiteUrl = globalThis.loc
 }
 
 export function getResumeFileName(portfolio) {
-  const fileName = cleanText(portfolio.name)
+  const fileName = cleanText(portfolio?.name)
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '') || 'curriculo'
+    .replace(/^-|-$/g, '')
 
-  return `${fileName}-curriculo.pdf`
+  return fileName ? `${fileName}-curriculo.pdf` : 'curriculo.pdf'
 }
 
 export async function downloadResumePdf(portfolio) {

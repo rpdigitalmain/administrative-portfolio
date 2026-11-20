@@ -1,11 +1,17 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('Administrative portfolio', () => {
+  test.beforeEach(async ({ page }) => {
+    // Keep E2E checks deterministic without relying on the public profile-image host.
+    await page.route('https://pub-752ba373c3a048999b2940bcdfbc0119.r2.dev/**', (route) => route.abort())
+  })
+
   test('renders the portfolio content and primary sections', async ({ page }) => {
     await page.goto('/')
 
     await expect(page).toHaveTitle('Portfólio Administrativo')
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Ruan Pablo')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Seja bem-vindo ao meu portfólio!')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Olá, eu sou Ruan Pablo.')
     await expect(page.getByRole('navigation', { name: 'Ações principais' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Resumo' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Competências' })).toBeVisible()
@@ -15,23 +21,31 @@ test.describe('Administrative portfolio', () => {
     await expect(skills.getByRole('listitem')).toHaveCount(8)
     await expect(skills.locator('svg')).toHaveCount(8)
     const tools = page.getByRole('list', { name: 'Ferramentas' })
-    await expect(tools.getByRole('listitem')).toHaveCount(3)
-    await expect(tools.locator('svg')).toHaveCount(3)
+    await expect(tools.getByRole('listitem')).toHaveCount(4)
+    await expect(tools.getByText('LibreOffice')).toBeVisible()
+    await expect(tools.getByText('Microsoft Office')).toBeVisible()
+    await expect(tools.locator('svg')).toHaveCount(4)
     const languages = page.getByRole('list', { name: 'Idiomas' })
     await expect(languages.getByRole('listitem')).toHaveCount(2)
     await expect(languages.locator('svg')).toHaveCount(2)
     await expect(page.getByText('Years of experience')).toHaveCount(0)
   })
 
-  test('navigates from the WhatsApp button to the social links card', async ({ page }) => {
+  test('links the header WhatsApp button to the configured phone number', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: 'WhatsApp' }).click()
 
-    await expect(page).toHaveURL(/#social-links$/)
-    await expect(page.locator('#social-links')).toBeInViewport()
-    await expect(page.getByRole('heading', { name: 'Redes sociais' })).toBeVisible()
-    await expect(page.getByRole('navigation', { name: 'Redes sociais' }).getByRole('link'))
+    const whatsappLink = page.getByRole('link', { name: 'Conversar pelo WhatsApp' })
+    await expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5535999182635')
+    await expect(whatsappLink).toHaveAttribute('target', '_blank')
+    await expect(page.getByRole('heading', { name: 'Redes e contato' })).toBeVisible()
+    await expect(page.getByRole('navigation', { name: 'Perfis sociais' }).getByRole('link'))
       .toHaveCount(3)
+  })
+
+  test('shows RP initials when the profile image is unavailable', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.locator('.profile-initials')).toHaveText('RP')
   })
 
   test('generates and downloads a resume PDF from portfolio data', async ({ page }) => {

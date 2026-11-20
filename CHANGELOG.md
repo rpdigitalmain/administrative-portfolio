@@ -6,9 +6,11 @@ All notable changes to this project are documented here. This changelog follows 
 
 ### Added
 
-- Responsive administrative portfolio with profile, summary, skills, experience, education, and certification sections.
-- WhatsApp contact call to action with a configurable phone number and prefilled message.
-- Vue Router not-found page and hash-aware scroll behavior.
-- Playwright end-to-end coverage for page content, WhatsApp navigation, resume link, mobile layout, and unknown routes.
+- Responsive administrative portfolio with profile, summary, skills, experience, education, and independent learning.
+- Cloudflare R2 profile photo with an initials fallback when the image is missing or unavailable.
+- WhatsApp contact links built from the configured international phone number.
+- Resume PDF generated from portfolio data with a QR code linking to the public site.
+- Vue Router not-found page and top-of-document navigation behavior.
+- Unit and Playwright browser integration coverage for portfolio data, PDF generation, contact links, profile image fallback, mobile layout, and unknown routes.
 - Architecture, contribution, and security documentation.
 - CI and release checks for lint, production builds, E2E tests, dependency audit, and Docker image build.

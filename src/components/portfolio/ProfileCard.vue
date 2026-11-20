@@ -22,7 +22,7 @@ const imageFailed = ref(false)
       :src="portfolio.profileImage"
       :alt="`Retrato ilustrativo de ${portfolio.name}`"
       @error="imageFailed = true"
-    />
+    >
 
     <div
       v-else

@@ -30,6 +30,9 @@ jobs:
       - name: Check lint
         run: npm run lint
 
+      - name: Run unit tests
+        run: npm run test:unit
+
       - name: Build production bundle
         run: npm run build
 

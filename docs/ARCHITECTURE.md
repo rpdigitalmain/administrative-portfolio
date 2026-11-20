@@ -26,7 +26,7 @@ flowchart TD
 - `index.html` defines the document language, metadata, and `#app` mount point.
 - `src/main.js` loads the Inter font, shared styles, router, and root component.
 - `src/App.vue` renders the active route through `RouterView`.
-- `src/router/index.js` maps `/` to the home page and unknown paths to the not-found page. Hash navigation scrolls to its target; a new route without a hash starts at the top.
+- `src/router/index.js` maps `/` to the home page and unknown paths to the not-found page. Each route navigation starts at the top of the document.
 - `src/pages/HomePage.vue` composes the site header, hero, and portfolio grid.
 
 Static hosts must rewrite unknown paths to `/index.html` for history-mode routing. The included Nginx Docker configuration provides this fallback.
@@ -40,11 +40,11 @@ Static hosts must rewrite unknown paths to `/index.html` for history-mode routin
 - `portfolio/` contains the hero and cards for the profile, summary, skills, experience, social links, and education.
 - `pages/` contains route-level views.
 
-`src/data/portfolio.js` is the single source for editable profile content. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. CSS is organized under `src/assets/styles/` by responsibility; `main.css` imports the token, reset, base, typography, layout, component, page, utility, and responsive files in order.
+`src/data/portfolio.js` is the single source for editable profile content, including the public Cloudflare R2 profile-photo URL. The profile card falls back to the initials when no photo is configured or the request fails. Each skill, tool, and language record contains a label and an icon key. `src/icons/portfolioIcons.js` maps those keys to Font Awesome definitions. CSS is organized under `src/assets/styles/` by responsibility; `main.css` imports the token, reset, base, typography, layout, component, page, utility, and responsive files in order.
 
 ## Social links and icons
 
-Social profiles are records in `portfolio.socialLinks`, each with a label and icon key. Most use a URL; WhatsApp builds its URL from a phone number with the country code. `displayValue` provides a short identifier for the generated resume instead of printing full profile URLs. If no WhatsApp number is configured, the card displays a disabled item. `SocialLinksCard.vue` renders these records, and `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions.
+Social profiles are records in `portfolio.socialLinks`, each with a label and icon key. Most use a URL; the header and contact card build WhatsApp links from the configured international phone number. `displayValue` provides a short identifier for the generated resume instead of printing full profile URLs. If no WhatsApp number is configured, the header button and contact-card item are disabled. `SocialLinksCard.vue` renders these records, and `src/icons/portfolioIcons.js` maps icon keys to Font Awesome definitions.
 
 ## Resume file
 
@@ -52,7 +52,7 @@ The header generates and downloads the resume in the browser from `src/data/port
 
 ## Styling and assets
 
-- Inter is self-hosted through `@fontsource-variable/inter`.
+- The Latin Inter variable-font subset is self-hosted; other glyphs fall back to system fonts.
 - `src/assets/styles/main.css` is the CSS entry point. The files beside it separate tokens, reset, base styles, typography, layout, cards, route styles, utilities, and responsive rules.
 - The layout adapts from a four-column desktop grid to two columns on tablets and a single column on narrow screens.
 - Reduced-motion preferences are respected for CSS transitions.
@@ -62,8 +62,10 @@ The header generates and downloads the resume in the browser from `src/data/port
 - `npm run dev` starts Vite for local development.
 - `npm run lint` checks JavaScript and Vue files with ESLint.
 - `npm run build` creates the static production bundle in `dist/`.
+- `npm run test:unit` checks portfolio data contracts, PDF generation, pagination, and filename sanitization with Node's built-in test runner.
 - `npm run preview` serves the production bundle locally.
-- `npm run test:e2e` starts Vite and runs the Playwright Chromium suite from `test/e2e/`.
+- `npm run test:e2e` starts Vite and runs the Playwright Chromium integration suite from `test/e2e/`.
+- `npm test` runs the unit and browser integration suites.
 - Playwright stores local artifacts in a temporary system folder and removes it after the run; it does not create a `test-results/` folder in the repository.
 - Docker uses a Node build stage and an Nginx runtime stage.
 

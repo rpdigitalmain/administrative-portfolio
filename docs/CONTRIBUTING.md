@@ -19,12 +19,12 @@ Run the checks that match your change before opening a pull request:
 npm run lint
 npm run build
 npx playwright install chromium
-npm run test:e2e
+npm test
 ```
 
-Playwright Chromium only needs to be installed once per environment. The GitHub Actions workflow runs lint, build, and E2E checks on Windows and Linux with the supported Node versions. Linux CI also audits production dependencies and builds the Docker image.
+`npm test` runs the Node.js unit tests and the Playwright browser integration suite. Playwright Chromium only needs to be installed once per environment. The GitHub Actions workflow runs lint, unit tests, build, and browser integration checks on Windows and Linux with the supported Node versions. Linux CI also audits production dependencies and builds the Docker image.
 
-Add or update E2E coverage when changing visible page content, navigation, responsive layout, or contact behavior. Include `package-lock.json` when changing npm dependencies.
+Add or update unit coverage for data contracts and pure helpers. Add or update browser integration coverage when changing visible page content, navigation, responsive layout, or contact behavior. Include `package-lock.json` when changing npm dependencies.
 
 ## Run with Docker
 
@@ -54,4 +54,4 @@ docs: document local setup and release checks
 
 ## Release checks
 
-Tags that begin with `v` run the release workflow. It repeats lint, build, and E2E checks; it does not publish or deploy the site.
+Tags that begin with `v` run the release workflow. It repeats lint, unit tests, build, and browser integration checks; it does not publish or deploy the site.
