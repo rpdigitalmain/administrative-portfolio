@@ -5,7 +5,7 @@ test.describe('Administrative portfolio', () => {
     await page.goto('/')
 
     await expect(page).toHaveTitle('Administrative Portfolio')
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('[Your Name]')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Camila Oliveira')
     await expect(page.getByRole('navigation', { name: 'Main actions' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Summary' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Skills' })).toBeVisible()
