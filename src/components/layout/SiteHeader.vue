@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { RouterLink } from 'vue-router'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,13 @@ const props = defineProps({
 
 const isGeneratingResume = ref(false)
 const resumeStatus = ref('')
+const whatsappContact = computed(() =>
+  props.portfolio.socialLinks.find((link) => link.icon === 'whatsapp' && link.phoneNumber),
+)
+const whatsappUrl = computed(() => {
+  const phoneNumber = String(whatsappContact.value?.phoneNumber ?? '').replace(/\D/g, '')
+  return phoneNumber ? `https://wa.me/${phoneNumber}` : ''
+})
 
 async function handleResumeDownload() {
   isGeneratingResume.value = true
@@ -46,9 +53,12 @@ async function handleResumeDownload() {
       class="header-actions"
       aria-label="Ações principais"
     >
-      <RouterLink
+      <a
+        v-if="whatsappUrl"
         class="pill-button whatsapp-pill-button"
-        :to="{ name: 'home', hash: '#social-links' }"
+        :href="whatsappUrl"
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Conversar pelo WhatsApp"
       >
         <FontAwesomeIcon
@@ -56,7 +66,20 @@ async function handleResumeDownload() {
           aria-hidden="true"
         />
         <span class="whatsapp-button-label">WhatsApp</span>
-      </RouterLink>
+      </a>
+      <button
+        v-else
+        class="pill-button whatsapp-pill-button"
+        type="button"
+        disabled
+        aria-label="Número de WhatsApp não cadastrado"
+      >
+        <FontAwesomeIcon
+          :icon="faWhatsapp"
+          aria-hidden="true"
+        />
+        <span class="whatsapp-button-label">WhatsApp</span>
+      </button>
       <button
         class="pill-button pill-button-light"
         type="button"

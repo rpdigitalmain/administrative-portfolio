@@ -28,6 +28,7 @@ export const portfolio = {
   ],
   tools: [
     { label: 'LibreOffice', icon: 'libreoffice' },
+    { label: 'Microsoft Office', icon: 'microsoft-office' },
     { label: 'Figma', icon: 'figma' },
     { label: 'Affinity', icon: 'affinity' },
   ],
@@ -36,6 +37,14 @@ export const portfolio = {
     { label: 'Inglês — A2', icon: 'english' },
   ],
   experience: [
+    {
+      title: 'Desenvolvedor de software independente',
+      company: 'Projetos próprios',
+      period: '2020 – Atual',
+      status: 'Atual',
+      current: true,
+      result: 'Desenvolvimento de software por conta própria em projetos pessoais.',
+    },
     {
       title: 'Atendente de loja',
       company: 'Materiais de Construção',

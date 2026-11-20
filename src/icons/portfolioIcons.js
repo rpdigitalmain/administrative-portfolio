@@ -20,6 +20,7 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
+  faMicrosoft,
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons'
 
@@ -33,6 +34,7 @@ export const portfolioIcons = {
   'attention-to-detail': faMagnifyingGlass,
   communication: faPeopleGroup,
   libreoffice: faFileLines,
+  'microsoft-office': faMicrosoft,
   figma: faFigma,
   affinity: faPalette,
   portuguese: faGlobe,
